@@ -75,33 +75,28 @@
                     <input type="text" class="form-control" id="dx">
                     <label for="inputState" class="form-label">Category:</label>
                     <select id="inputState" class="form-select" name="cat">
-                                    <option selected>Choose...</option>
-                                    <option value="cardiovascular">Cardiovascular</option>
-                                    <option value="AK">Respiratory</option>
-                                    <option value="AZ">Musculoskeletal</option>
-                                    <option value="AR">GI</option>
-                                    <option value="CA">Neurological</option>
-                                    <option value="CO">Confusion</option>
-                                    <option value="CT">Risk For Falls</option>
-                                    <option value="DE">Visual</option>
-                                    <option value="DC">Integumentary</option>
-                                    <option value="FL">Diabetes</option>
-                                    <option value="GA">Abnormal Labs</option>
-                                    <option value="HI">Code Status (Full/DNR)</option>
-                                    <option value="ID">Insomnia</option>
-                                    <option value="IL">Constipation</option>
-                                    <option value="IN">Anxiety</option>
-                                    <option value="IA">Depression</option>
-                                    <option value="KS">Anti-Anxiety Medications</option>
-                                    <option value="KY">Anti-Depressant Medications</option>
-                                    <option value="LA">Anti-Psychotic Medications</option>
-                                    <option value="ME">Hypnotic Medications</option>
-                                    <option value="MD">Opiod Medications</option>
-                                    <option value="MA">Diuretic Medications</option>
+                                    <option selected></option>
+                                    <option value="card">Cardiovascular</option>
+                                    <option value="resp">Respiratory</option>
+                                    <option value="musc">Musculoskeletal</option>
+                                    <option value="labs">Abnormal Lab Values</option>
+                                    <option value="conf">Confusion</option>
+                                    <option value="falls">Risk For Falls</option>
+                                    <option value="vis">Visual</option>
+                                    <option value="skin">Integumentary</option>
+                                    <option value="gi">GI/GERD</option>
+                                    <option value="code">Code Status (Full/DNR)</option>
+                                    <option value="mood">Anxiety/Depression</option>
+                                    <option value="nutr">Nutrition</option>
+                                    <option value="aaMed">Anti-Anxiety Medications</option>
+                                    <option value="adMed">Anti-Depressant Medications</option>
+                                    <option value="dirMed">Diuretic Medications</option>
+                                    <option value="unused">Unused</option>
                                     </select>
                     <div class="row mt-3">
-                        <div class="col">
-                            <button class="btn btn-large btn-primary d-flex justify-content-start" id="btn" onclick="addDx()" type="button">Add Diagnosis</button>
+                        <div class="col toolTip">
+                            <button class="btn btn-large btn-primary d-flex justify-content-start" id="btn" onclick="addDx()" onmouseout="toolTipReset()" type="button">
+                                <span class="toolTipText invisible" id="myToolTip"></span> Add Diagnosis</button>
                         </div>
                         <div class="col d-flex justify-content-end">
                             <button class="btn btn-large btn-primary d-flex justify-content-end" onclick="completeCarePlan()" type="button">Complete CarePlan</button>
@@ -110,166 +105,95 @@
                 </form>
                 <div class="col">
                     <div class="care-plan">
-                        <div id="card-x" class="invisible">
+                        <div id="card-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RISK FOR IMPAIRED CARDIAC OUTPUT R/T <span id="cardDx"></span></p>
+                            <p>RISK FOR IMPAIRED CARDIAC OUTPUT R/T: <span id="cardDx"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT WILL HAVE NO S/SX CARDIAC COMPLICATIONS DURING STAY</p>
+                            <p>MAINTAIN BP WITHIN INDIVIDUALLY ACCEPTABLE RANGE AND DEMONSTRATE STABLE CARDIAC
+                                RHYTHM AND RATE.
+                            </p>
                             <h2>Interventions:</h2>
                             <ul>
-                                <li>MEDICATIONS PER PO</li>
-                                <li>VITALS Q SHIFT AND PRN</li>
-                                <li>DIET PER PO</li>
-                                <li>LABS/DIAGNOSTIC TESTS PER PO</li>
-                                <li>WEIGHT PER PO</li>
+                                <li>NOTE PRESENCE AND QUALITY OF CENTRAL AND PERIPHERAL PULSES</li>
+                                <li>AUSCULTATE HEART AND BREATH SOUNDS</li>
+                                <li>OBSERVE SKIN COLOR, MOISTURE, TEMPERATURE, AND CAPILLARY REFILL TIME</li>
+                                <li>REPORT ANY DEPENDENT OR GENERALIZED EDEMA</li>
+                                <li>WEIGHTS PER PHYSICIAN'S ORDERS</li>
                             </ul>
                         </div>
-                        <div id="resp-x" class="invisible">
+                        <div id="resp-x" class="hide">
                             <h2>Focus:</h2>
                             <p>RISK FOR IMPAIRED GAS EXCHANGE R/T <span id="respDx"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT WILL HAVE NO S/SX RESPIRATORY DISTRESS GO UN-NOTICED DURING STAY.</p>
+                            <p>PATIENT WILL BE FREE FROM ANY SYMPTOMS OF RESPIRATORY DISTRESS</p>
                             <h2>Interventions:</h2>
                             <ul>
-                                <li>MEDICATIONS/TX PER PO</li>
-                                <li>O2 PER PO</li>
-                                <li>MONITOR SPO2 PER PO AND PRN</li>
-                                <li>O2 CHANGEOUT PER PO</li>
-                                <li>ENCOURAGE REST BREAKS</li>
-                                <li>LABS/DIAGNOSTIC TESTS PER PO</li>
+                                <li>ASSESS RESPIRATORY RATE AND DEPTH. NOTE THE USE OF ACCESSORY MUSCLES OR SHORTNESS OF BREATH</li>
+                                <li>ELEVATE HEAD OF BED AND ASSIST PATIENT TO ASSUME POSITION TO EASE WORK OF BREATHING.</li>
+                                <li>ENCOURAGE DEEP, SLOW, OR PURSED-LIP BREATHING AS INDIVIDUALLY NEEDED AND TOLERATED</li>
+                                <li>ASSESS AND ROUTINELY MONITOR SKIN AND MUCOUS MEMBRANE COLOR</li>
+                                <li>AUSCULTATE BREATH SOUNDS, NOTING AREAS OF ADVENTITIOUS SOUNDS</li>
+                                <li>DIAGNOSTICS PER PHYSICIAN'S ORDERS</li>
                             </ul>
                         </div>
-                        <div id="labs-x" class="invisible">
+                        <!-- ADD THIS ONE -->
+                        <div id="musc-x" class="hide">
+                            <h2>Focus:</h2>
+                            <p>IMPAIRED PHYSICAL MOBILITY R/T <span id="muscDx"></span></p>
+                            <h2>Goal:</h2>
+                            <p>PATIENT WILL MAINTAIN FUNCTIONAL MOBILITY AS LONG AS POSSIBLE WITHIN LIMITATIONS OF DISEASE PROCESS</p>
+                            <h2>Interventions:</h2>
+                            <ul>
+                                <li>ASSESS THE PATIENT'S FUNCTIONAL ABILITY FOR MOBILITY/ADL PERFORMANCE AND REPORT ANY CHANGES</li>
+                                <li>PROVIDE RANGE OF MOTION EXERCISES EVERY SHIFT</li>
+                                <li>PATIENT TO PARTICIPATE IN ADLS AS TOLERATED</li>
+                                <li>THERAPY TO EVALUATE AS NEEDED</li>
+                            </ul>
+                        </div>
+                        <div id="labs-x" class="hide">
                             <h2>Focus:</h2>
                             <p>RISK FOR ABNORMAL LABS/DIAGNOSTICS R/T <span id="labsDx"></span></p>
                             <h2>Goal:</h2>
-                            <p>LAB VALUES WILL BE WITHIN MD ACCEPTABLE RANGE DURING STAY</p>
+                            <p>LAB VALUES WILL BE WITHIN ACCEPTABLE RANGE THOUGH NEXT REVIEW DATE</p>
                             <h2>Interventions:</h2>
                             <ul>
+                                <li>MEDICATIONS PER PHYSICIAN'S ORDERS</li>
+                                <li>LABS/DIAGNOSTICS AS NEEDED</li>
+                                <li>REPORT TO PHYSICIAN ANY SIGN OF ALTERED MENTAL STATUS OR ABNORMAL ELECTROLYTES</li>
+                            </ul>
+                        </div>
+                        <div id="conf-x" class="hide">
+                            <h2>Focus:</h2>
+                            <p>RISK FOR FURTHER COGNITIVE DECLINE R/T <span id="confDx"></span></p>
+                            <h2>Goal:</h2>
+                            <p>RESIDENT WILL BE FREE FROM FURTHER DECLINE THROUGH THE REVIEW DATE </p>
+                            <h2>Interventions:</h2>
+                            <ul>
+                                <li>SPEECH THERAPY TO EVAL AND TX PER PO</li>
+                                <li>REORIENT PATIENT IN TIMES OF DISTRESS</li>
                                 <li>MEDICATIONS PER PO</li>
-                                <li>LABS/DIAGNOSTICS PER PO</li>
+                                <li>HELP RESIDENT ESTABLISH A ROUTINE UPON ADMISSION AND ADD IT TO THE CARE PLAN</li>
+                                <li>SOCIAL/ACTIVITIES TO VISIT PRN</li>
                             </ul>
                         </div>
-                        <div id="pain-x" class="invisible">
+                        <!-- ADD THIS ONE -->
+                        <div id="falls-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RISK FOR DISCOMFORT/PAIN R/T <span id="painDx"></span></p>
+                            <p>RISK OF FALLING R/T <span id="fallDx"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT'S PAIN WILL BE MANAGED THROUGH THE NEXT REVIEW DATE</p>
+                            <p>PATIENT WILL NOT EXPERIENCE A FALL DURING STAY AND WILL TRANSFER SAFELY TO THEIR ABILITIES</p>
                             <h2>Interventions:</h2>
                             <ul>
-                                <li>MEDICATIONS PER PO</li>
-                                <li>LABS/DIAGNOSTICS PER PO</li>
-                                <li>NOTIFY MD/APN IF PAIN MANAGEMENT IS NOT MET</li>
-                                <li>PAIN MEDS PER PO- WILL MONITOR FOR ADVERSE REACTIONS OF THESE MEDS (SEDATION, CONSTIPATION, DECREASED RESPIRATIONS</li>
-                                <li>ASSESS AND RATE PAIN Q SHIFT AND PRN</li>
-                                <li>MONITOR FOR NON VERBAL S/SX PAIN</li>
-                                <li>NON-PHARMALOGICAL INTERVENTIONS IF APPLICABLE</li>
+                                <li>ASSESS HISTORY OF FALLS</li>
+                                <li>REPORT ANY CHANGES IN MENTAL STATUS</li>
+                                <li>TRANSFER RESIDENT ACCORDING TO INDIVIDUAL PERFORMANCE IN ADL'S</li>
+                                <li>REVIEW PATIENT'S MEDICATIONS FOR ANY MEDICATIONS THAT WILL CAUSE DIZZINESS OR DECREASE BLOOD PRESSURE</li>
+                                <li>ENSURE ENVIORNMENT IS FREE OF FALLING HAZARDS (CORDS, SPILLS, ETC)</li>
                             </ul>
                         </div>
-                        <div id="adls-x" class="invisible">
+                        <div id="vis-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>SELF CARE DEFICIT R/T RESIDENT REQUIRING ASSISTANCE WITH ADLS,<span id="adlsDx"></span></p>
-                            <h2>Goal:</h2>
-                            <p>RESIDENT WILL INCREASE SELF SUFFICIENCY WITH ADLS DURING STAY</p>
-                            <h2>Interventions:</h2>
-                            <ul>
-                                <li>TRANSFERS: X1 ASSIST</li>
-                                <li>BED MOBILITY: X1 ASSIST</li>
-                                <li>LOCOMOTION: SELF PROPELS</li>
-                                <li>EATING: SET UP ASSIST WITH CUEING PRN, MAY OFFER MORE ASSIST PRN</li>
-                                <li>TOILETING: X1 ASSIST FOR HYGIENE</li>
-                                <li>PERSONAL HYGIENE: X1 ASSIST</li>
-                                <li>BATHING: X1 ASSIST</li>
-                                <li>DRESSING: X1 ASSIST</li>
-                                <li>PT/OT TO EVAL AND TX PER PO</li>
-                                <li>NURSING TO ASSIST WITH ADLS</li>
-                                <li>SHOWER 3X/WEEK WITH CNA ASSIST</li>
-                                <li>MAY PROVIDE MORE ASSISTANCE AS NEEDED</li>
-                            </ul>
-                        </div>
-                        <div id="cons-x" class="invisible">
-                            <h2>Focus:</h2>
-                            <p>RESIDENT HAS OCCASIONAL <span id="consDx"></span></p>
-                            <h2>Goal:</h2>
-                            <p>RESIDENT WILL HAVE SIGNS OF CONSTIPATION MANAGED THROUGH REVIEW DATE</p>
-                            <h2>Interventions:</h2>
-                            <ul>
-                                <li>FLAG CHART WHEN RESIDENT GOES LONGER THAN 3 DAYS WITHOUT A BM</li>
-                                <li>MEDICATIONS AS NEEDED WHEN ORDERED BY PHYSICIAN</li>
-                                </ul>
-                        </div>
-                        <div id="diabetes-x" class="invisible">
-                            <h2>Focus:</h2>
-                            <p>RESIDENT HAS <span id="diabetesDx"></span></p>
-                            <h2>Goal:</h2>
-                            <p>RESIDENT WILL HAVE STABLE BLOOD GLUCOSE LEVELS THROUGH REVIEW DATE. </p>
-                            <h2>Interventions:</h2>
-                            <ul>
-                                <li>FSBS PER PO</li>
-                                <li>MEDS PER PO</li>
-                                <li>LABS PER PO</li>
-                                <li>DIET PER PO</li>
-                                <li>MONITOR TRAYS FOR APPROPRIATE FOODS/DRINKS</li>
-                                <li>SNACK PER PO</li>
-                                <li>MONITOR FOR S/SX HYPO/HYPERGLYCEMIA(LETHARGY, UNRESPONSIVE, SWEATING, COLD/CLAMMY SKIN. INCREASED URINE, HEADACHE, N/V, SWEET SMELLING BREATH.)</li>
-                                <li>NOTIFY MD OF ABNORMAL FSBS</li>
-                            </ul>
-                        </div>
-                        <div id="cold-x" class="invisible">
-                            <h2>Focus:</h2>
-                            <p>PATIENT HAS <span id="coldDx"></span> THAT CAUSES COLD LIKE SYMPTOMS</p>
-                            <h2>Goal:</h2>
-                            <p>RESIDENT WILL HAVE ALLERGY SYMPTOMS MANAGED DAILY DURING STAY</p>
-                            <h2>Interventions:</h2>
-                            <ul>
-                                <li>MEDICATIONS PER PO</li>
-                                <li>DIAGNOSTICS PER PO</li>
-                                <li>MONITOR FOR INCREASE IN S/SX AND REPORT TO MD</li>
-                            </ul>
-                        </div>
-                        <div id="nutrition-x" class="invisible">
-                            <h2>Focus:</h2>
-                            <p>RISK FOR IMPAIRED NUTRITION R/T <span id="nutritionDx"></span></p>
-                            <h2>Goal:</h2>
-                            <p>RESIDENT WILL MAINTAIN ADEQUATE DIET/MAINTAIN WEIGHT THROUGH REVIEW PERIOD</p>
-                            <h2>Interventions:</h2>
-                            <ul>
-                                <li>WEIGHTS PER PO</li>
-                                <li>DIET PER PO</li>
-                                <li>DIETARY TO UPDATE PREFERENCES</li>
-                                <li>ST TO EVAL AND TX PER PO</li>
-                                <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
-                                </ul>
-                        </div>
-                        <div id="skin-x" class="invisible">
-                            <h2>Focus:</h2>
-                            <p>RISK FOR PRESSURE INJURY/IMPAIRED SKIN INTEGRITY R/T BRADEN SCALE, <span id="skinDx"></span>, NEED FOR ASSIST WITH BED MOBILITY</p>
-                            <h2>Goal:</h2>
-                            <p>MAINTAIN SKIN INTEGRITY THROUGH NEXT REVIEW DATE</p>
-                            <h2>Interventions:</h2>
-                            <ul>
-                                <li>PRESSURE REDUCING MATTRESS/CHAIR CUSHION PRN</li>
-                                <li>WEEKLY BODY AUDIT PER TX NURSE</li>
-                                <li>WOUND CARE PER PO</li>
-                                <li>RD CONSULT PRN</li>
-                                </ul>
-                        </div>
-                        <div id="gi-x" class="invisible">
-                            <h2>Focus:</h2>
-                            <p>RISK FOR GI DISCOMFORT R/T <span id="giDx"></span></p>
-                            <h2>Goal:</h2>
-                            <p>RESIDENT DISCOMFORT WILL BE MINIMIZED DURING STAY</p>
-                            <h2>Interventions:</h2>
-                            <ul>
-                                <li>MEDICATION PER PO</li>
-                                <li>ENCOURAGE RESIDENT TO REMAIN UPRIGHT FOR 30 MINS AFTER MEALS</li>
-                                <li>ENCOURAGE RESIDENT TO EAT A BLAND DIET AS TOLERATED</li>
-                                <li>ENCOURAGE WATER INTAKE</li>
-                                </ul>
-                        </div>
-                        <div id="vision-x" class="invisible">
-                            <h2>Focus:</h2>
-                            <p>IMPAIRED ABILITY TO SEE IN ADEQUATE LIGHT r/t <span id="visionDx"></span></p>
+                            <p>IMPAIRED ABILITY TO SEE R/T <span id="visDx"></span></p>
                             <h2>Goal:</h2>
                             <p>RESIDENT WILL BE FREE FROM VISUAL DECLINE DURING THROUGH NEXT REVIEW DATE.</p>
                             <h2>Interventions:</h2>
@@ -279,28 +203,54 @@
                                 <li>KEEP ITEMS IN REGULAR PLACES</li>
                                 <li>NOTIFY RESIDENT IF ITEMS NEED TO BE MOVED</li>
                                 <li>ASSIST WITH GLASSESS PRN (if applicable)</li>
-                                <li>1</li>
                             </ul>
                         </div>
-                        <div id="conf-x" class="invisible">
+                        <!-- ADD THIS ONE -->
+                        <div id="skin-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RISK FOR FURTHER COGNITIVE DECLINE R/T BIMS SCORE LESS THAN 13, <span id="confDx"></span></p>
+                            <p>RISK FOR IMPAIRED SKIN INTEGRITY R/T <span id="skinDx"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT WILL BE FREE FROM FURTHER DECLINE OF COGNITIVE STATUS DURING STAY. </p>
+                            <p>PATIENT WILL EXPERIENCE NO SKIN BREAKDOWN THROUGH THE REVIEW DATE</p>
                             <h2>Interventions:</h2>
                             <ul>
-                                <li>ST TO EVAL AND TX PER PO</li>
-                                <li>REORIENT PRN</li>
-                                <li>MEDICATIONS PER PO</li>
-                                <li>HELP RESIDENT ESTABLISH A ROUTINE</li>
-                                <li>SOCIAL/ACTIVITIES TO VISIT PRN</li>
+                                <li>OBTAIN BRADEN SCALE SCORE FOR THIS PATIENT</li>
+                                <li>ENSURE PATIENT MAINTAINS AN ADEQUATE DIET, EATING OVER 50% PER MEAL</li>
+                                <li>ASSESS PATIENTS ABILITY TO MOVE SELF IN BED</li>
+                                <li>ENSURE PAITENT TURNS AND IS REPOSITIONED EVERY TWO HOURS WHILE IN BED</li>
+                                <li>REPORT ANY NEW FINDINGS OF SKIN BREAKDOWN</li>
                             </ul>
                         </div>
-                        <div id="mood-x" class="invisible">
+                        <div id="gi-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RESIDENT WITH: <span id="moodDx"></span></p>
+                            <p>RISK FOR GI DISCOMFORT R/T <span id="giDx"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT WILL MAINTAIN A STABLE MOOD STATE DURING STAY.</p>
+                            <p>RESIDENT DISCOMFORT WILL BE MINIMIZED DURING STAY</p>
+                            <h2>Interventions:</h2>
+                            <ul>
+                                <li>MEDICATIONS PER PO</li>
+                                <li>ENCOURAGE RESIDENT TO REMAIN UPRIGHT FOR 30 MINS AFTER MEALS</li>
+                                <li>ENCOURAGE RESIDENT TO AVOID SPICY FOODS AND CAFFEINATED DRINKS</li>
+                                <li>ENCOURAGE WATER INTAKE</li>
+                                </ul>
+                        </div>
+                        <!-- ADD THIS ONE -->
+                        <div id="code-x" class="hide">
+                            <h2>Focus:</h2>
+                            <p>PATIENT CODE STATUS: <span id="codeDx"></span></p>
+                            <h2>Goal:</h2>
+                            <p>PATIENT AND FAMILY MEMBERS' WISHES WILL BE RESPECTED</p>
+                            <h2>Interventions:</h2>
+                            <ul>
+                                <li>FLAG PATIENT'S CHART WITH CODE STATUS</li>
+                                <li>PATIENT'S CODE STATUS WILL BE FOLLOWED IN THE EVENT OF AN EMERGENCY</li>
+                                <li>IF TRANSFERRED TO HOSPITAL, ENSURE CODE STATUS IS SENT WITH PATIENT</li>
+                                </ul>
+                        </div>
+                        <div id="mood-x" class="hide">
+                            <h2>Focus:</h2>
+                            <p>PATIENT WITH: <span id="moodDx"></span></p>
+                            <h2>Goal:</h2>
+                            <p>PATIENT WILL MAINTAIN A STABLE MOOD STATE DURING STAY.</p>
                             <h2>Interventions:</h2>
                             <ul>
                                 <li>MEDICATIONS PER PO</li>
@@ -309,21 +259,66 @@
                                 <li>PSYCH CONSULT PRN</li>
                                 <li>SOCIAL AND ACTIVITIES TO VISIT PRN</li>
                                 <li>STAFF TO ATTEMPT TO KEEP HS ROUTINE FOR CONSISTENCY, SLEEP PATTERN DEVELOPMENT</li>
+                                <li>REPORT ANY SIGNS OR EXPRESSION OF SELF HARM AND PLACE PATIENT UNDER 1 ON 1 WATCH IF IT OCCURS</li>
                             </ul>
                         </div>
-                        <div id="cont-x" class="invisible">
+                        <div id="nutr-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RISK FOR URINARY INCONTINENCE R/T REQUIRING ASSIST WITH TOILET USE, <span id="contDx"></span></p>
+                            <p>RISK FOR IMPAIRED NUTRITION R/T <span id="nutrDx"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT WILL EXPERIENCE NO COMPLICATIONS R/T INCONTINENCE THROUGH THE NEXT REVIEW DATE</p>
+                            <p>RESIDENT WILL MAINTAIN ADEQUATE DIET/MAINTAIN WEIGHT THROUGH REVIEW PERIOD</p>
                             <h2>Interventions:</h2>
                             <ul>
-                                <li>ENCOURAGE RESD TO TOILET AT REGULAR INTERVALS</li>
-                                <li>STAFF TO REPORT DECREASED URINATION</li>
-                                <li>STAFF TO RESPOND PROMPRLY TO CALLS FOR ASSISTANCE</li>
+                                <li>WEIGHTS PER PO</li>
+                                <li>DIET PER PO</li>
+                                <li>DIETARY TO UPDATE PREFERENCES</li>
+                                <li>SPEECH THERAPY TO EVAL AND TX PER PO</li>
+                                <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
                                 </ul>
                         </div>
-                        <div id="unused-x" class="invisible">
+                        <div id="aaMed" class="hide">
+                            <h2>Focus:</h2>
+                            <p>RISK FOR IMPAIRED NUTRITION R/T <span id="aaMed"></span></p>
+                            <h2>Goal:</h2>
+                            <p>RESIDENT WILL MAINTAIN ADEQUATE DIET/MAINTAIN WEIGHT THROUGH REVIEW PERIOD</p>
+                            <h2>Interventions:</h2>
+                            <ul>
+                                <li>WEIGHTS PER PO</li>
+                                <li>DIET PER PO</li>
+                                <li>DIETARY TO UPDATE PREFERENCES</li>
+                                <li>SPEECH THERAPY TO EVAL AND TX PER PO</li>
+                                <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
+                                </ul>
+                        </div>
+                        <div id="adMed" class="hide">
+                            <h2>Focus:</h2>
+                            <p>RISK FOR IMPAIRED NUTRITION R/T <span id="adMed"></span></p>
+                            <h2>Goal:</h2>
+                            <p>RESIDENT WILL MAINTAIN ADEQUATE DIET/MAINTAIN WEIGHT THROUGH REVIEW PERIOD</p>
+                            <h2>Interventions:</h2>
+                            <ul>
+                                <li>WEIGHTS PER PO</li>
+                                <li>DIET PER PO</li>
+                                <li>DIETARY TO UPDATE PREFERENCES</li>
+                                <li>SPEECH THERAPY TO EVAL AND TX PER PO</li>
+                                <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
+                                </ul>
+                        </div>
+                        <div id="dirMed" class="hide">
+                            <h2>Focus:</h2>
+                            <p>RISK FOR IMPAIRED NUTRITION R/T <span id="dirMed"></span></p>
+                            <h2>Goal:</h2>
+                            <p>RESIDENT WILL MAINTAIN ADEQUATE DIET/MAINTAIN WEIGHT THROUGH REVIEW PERIOD</p>
+                            <h2>Interventions:</h2>
+                            <ul>
+                                <li>WEIGHTS PER PO</li>
+                                <li>DIET PER PO</li>
+                                <li>DIETARY TO UPDATE PREFERENCES</li>
+                                <li>SPEECH THERAPY TO EVAL AND TX PER PO</li>
+                                <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
+                                </ul>
+                        </div>
+                        <div id="unused-x" class="hide">
                             <h1>You still need to care plan:</h1>
                             <p><span id="unusedDx"></span></p>
                             </ul>

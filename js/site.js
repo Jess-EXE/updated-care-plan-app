@@ -1,179 +1,204 @@
 let diagnoses = [];
 let cardX = [];
 let respX = [];
+let muscX = [];
 let labsX = [];
-let painX = [];
-let adlsX = [];
-let consX = [];
-let diabetesX = [];
-let coldX = [];
-let nutritionX = [];
+let confX = [];
+let fallsX = [];
+let visX = [];
 let skinX = [];
 let giX = [];
-let visionX = [];
-let confX = [];
+let codeX = [];
 let moodX = [];
-let contX = [];
+let nutrX = [];
+let aaMedX = [];
+let adMedX = [];
+let dirMedX = [];
 let unusedX = [];
 
 
 function addDx() {
+
     let select = document.getElementById("inputState");
+
     let value = select.options[select.selectedIndex].value;
-    console.log(value);
-    let diagnosis = {
-        //id: Date.now(),
-        dx: document.getElementById('dx').value,
-        cat: value
+    
+    let userInput = document.getElementById("dx").value;
+
+    var tooltip = document.getElementById("myToolTip");
+
+    if (value.length > 0 && userInput.length > 0) {
+
+        if (userInput.length > 0) {
+
+            tooltip.classList.remove("invisible");
+
+            tooltip.innerHTML = "Diagnosis added!";
+
+        }
+    
+        let diagnosis = {
+
+            dx: userInput,
+            cat: value
+        }
+
+        diagnoses.push(diagnosis);
+
+        document.querySelector('form').reset();
+    } else {
+
+        alert("You need to enter a diagnosis and a category.")
+
     }
-    diagnoses.push(diagnosis);
-    document.querySelector('form').reset();
-
-    //console.warn('added', {diagnoses} );
-    //let pre = document.querySelector('#msg pre');
-    //pre.textContent = '\n' + JSON.stringify(diagnoses, '\t', 2);
-
-    //localStorage.setItem('myDxList', JSON.stringify(diagnoses));
 }
+
+function toolTipReset() {
+    var tooltip = document.getElementById("myToolTip");
+    tooltip.classList.add("hide");
+}
+
+let count = 0
 
 function completeCarePlan() {
-    for (i = 0; i < diagnoses.length; i++) {
-        switch (diagnoses[i].cat) {
-            case 'cardiovascular':
-                cardX.push(" " + diagnoses[i].dx);
-                break;
-            case 'respiratory':
-                respX.push(" " + diagnoses[i].dx);
-                break;
-            case 'labs':
-                labsX.push(" " + diagnoses[i].dx);
-                break;
-            case 'pain':
-                painX.push(" " + diagnoses[i].dx);
-                break;
-            case 'adls':
-                adlsX.push(" " + diagnoses[i].dx);
-                break;
-            case 'constipation':
-                consX.push(" " + diagnoses[i].dx);
-                break;
-            case 'diabetes':
-                diabetesX.push(" " + diagnoses[i].dx);
-                break;
-            case 'cold':
-                coldX.push(" " + diagnoses[i].dx);
-                break;
-            case 'nutrition':
-                nutritionX.push(" " + diagnoses[i].dx);
-                break;
-            case 'skin':
-                skinX.push(" " + diagnoses[i].dx);
-                break;
-            case 'gi':
-                giX.push(" " + diagnoses[i].dx);
-                break;
-            case 'vision':
-                visionX.push(" " + diagnoses[i].dx);
-                break;
-            case 'confusion':
-                confX.push(" " + diagnoses[i].dx);
-                break;
-            case 'mood':
-                moodX.push(" " + diagnoses[i].dx);
-                break;
-            case 'continence':
-                contX.push(" " + diagnoses[i].dx);
-                break;
-            case 'unused':
-                unusedX.push(" " + diagnoses[i].dx);
-                break;
-            default:
-                alert('No diagnosis entered');
+    if (count == 0) {
+        count++;
+        for (i = 0; i < diagnoses.length; i++) {
+            switch (diagnoses[i].cat) {
+                case "card":
+                    cardX.push(" " + diagnoses[i].dx);
+                    break;
+                case "resp":
+                    respX.push(" " + diagnoses[i].dx);
+                    break;
+                case "musc":
+                    muscX.push(" " + diagnoses[i].dx);
+                    break;
+                case "labs":
+                    labsX.push(" " + diagnoses[i].dx);
+                    break;
+                case "conf":
+                    confX.push(" " + diagnoses[i].dx);
+                    break;
+                case "falls":
+                    fallsX.push(" " + diagnoses[i].dx);
+                    break;
+                case "vis":
+                    visX.push(" " + diagnoses[i].dx);
+                    break;
+                case "skin":
+                    skinX.push(" " + diagnoses[i].dx);
+                    break;
+                case "gi":
+                    giX.push(" " + diagnoses[i].dx);
+                    break;
+                case "code":
+                    codeX.push(" " + diagnoses[i].dx);
+                    break;
+                case "mood":
+                    moodX.push(" " + diagnoses[i].dx);
+                    break;
+                case "nutr":
+                    nutrX.push(" " + diagnoses[i].dx);
+                    break;
+                case "aaMed":
+                    aaMedX.push(" " + diagnoses[i].dx);
+                    break;
+                case "adMed":
+                    adMedX.push(" " + diagnoses[i].dx);
+                    break;
+                case "dirMed":
+                    dirMedX.push(" " + diagnoses[i].dx);
+                    break;
+                case 'unused':
+                    unusedX.push(" " + diagnoses[i].dx);
+                    break;
+                default:
+                    break;
+            }
         }
-    }
-
-    if (cardX.length > 0) {
-        document.getElementById('card-x').classList.toggle('invisible');
-        let cardDx = document.getElementById('cardDx');
-        cardDx.textContent = cardX;
-    }
-    if (respX.length > 0) {
-        document.getElementById('resp-x').classList.toggle('invisible');
-        let respDx = document.querySelector('#respDx');
-        respDx.textContent = respX;
-    }
-    if (labsX.length > 0) {
-        document.getElementById('labs-x').classList.toggle('invisible');
-        let labsDx = document.querySelector('#labsDx');
-        labsDx.textContent = labsX;
-    }
-    if (painX.length > 0) {
-        document.getElementById('pain-x').classList.toggle('invisible');
-        let painDx = document.querySelector('#painDx');
-        painDx.textContent = painX;
-    }
-    if (adlsX.length > 0) {
-        document.getElementById('adls-x').classList.toggle('invisible');
-        let adlsDx = document.querySelector('#adlsDx');
-        adlsDx.textContent = adlsX;
-    }
-    if (consX.length > 0) {
-        document.getElementById('cons-x').classList.toggle('invisible');
-        let consDx = document.querySelector('#consDx');
-        consDx.textContent = consX;
-    }
-    if (diabetesX.length > 0) {
-        document.getElementById('diabetes-x').classList.toggle('invisible');
-        let diabetesDx = document.querySelector('#diabetesDx');
-        diabetesDx.textContent = diabetesX;
-    }
-    if (coldX.length > 0) {
-        document.getElementById('cold-x').classList.toggle('invisible');
-        let coldDx = document.querySelector('#coldDx');
-        coldDx.textContent = coldX;
-    }
-    if (nutritionX.length > 0) {
-        document.getElementById('nutrition-x').classList.toggle('invisible');
-        let nutritionDx = document.querySelector('#nutritionDx');
-        nutritionDx.textContent = nutritionX;
-    }
-    if (skinX.length > 0) {
-        document.getElementById('skin-x').classList.toggle('invisible');
-        let skinDx = document.querySelector('#skinDx');
-        skinDx.textContent = skinX;
-    }
-    if (giX.length > 0) {
-        document.getElementById('gi-x').classList.toggle('invisible');
-        let giDx = document.querySelector('#giDx');
-        giDx.textContent = giX;
-    }
-    if (visionX.length > 0) {
-        document.getElementById('vision-x').classList.toggle('invisible');
-        let visionDx = document.querySelector('#visionDx');
-        visionDx.textContent = visionX;
-    }
-    if (confX.length > 0) {
-        document.getElementById('conf-x').classList.toggle('invisible');
-        let confDx = document.querySelector('#confDx');
-        confDx.textContent = confX;
-    }
-    if (moodX.length > 0) {
-        document.getElementById('mood-x').classList.toggle('invisible');
-        let moodDx = document.querySelector('#moodDx');
-        moodDx.textContent = moodX;
-    }
-    if (contX.length > 0) {
-        document.getElementById('cont-x').classList.toggle('invisible');
-        let contDx = document.querySelector('#contDx');
-        contDx.textContent = contX;
-    }
-    if (unusedX.length > 0) {
-        document.getElementById('unused-x').classList.toggle('invisible');
-        let unusedDx = document.querySelector('#unusedDx');
-        unusedDx.textContent = unusedX;
+    
+        if (cardX.length > 0) {
+            document.getElementById('card-x').classList.toggle('hide');
+            let cardDx = document.getElementById('cardDx');
+            cardDx.textContent = cardX;
+        }
+        if (respX.length > 0) {
+            document.getElementById('resp-x').classList.toggle('hide');
+            let respDx = document.getElementById('respDx');
+            respDx.textContent = respX;
+        }
+        if (muscX.length > 0) {
+            document.getElementById('musc-x').classList.toggle('hide');
+            let muscDx = document.getElementById('muscDx');
+            muscDx.textContent = muscX;
+        }
+        if (labsX.length > 0) {
+            document.getElementById('labs-x').classList.toggle('hide');
+            let labsDx = document.getElementById('labsDx');
+            labsDx.textContent = labsX;
+        }
+        if (confX.length > 0) {
+            document.getElementById('conf-x').classList.toggle('hide');
+            let confDx = document.getElementById('confDx');
+            confDx.textContent = confX;
+        }
+        if (fallsX.length > 0) {
+            document.getElementById('falls-x').classList.toggle('hide');
+            let fallsDx = document.getElementById('fallsDx');
+            fallsDx.textContent = fallsX;
+        }
+        if (visX.length > 0) {
+            document.getElementById('vis-x').classList.toggle('hide');
+            let visDx = document.getElementById('visDx');
+            visDx.textContent = visX;
+        }
+        if (skinX.length > 0) {
+            document.getElementById('skin-x').classList.toggle('hide');
+            let skinDx = document.getElementById('skinDx');
+            skinDx.textContent = skinX;
+        }
+        if (giX.length > 0) {
+            document.getElementById('gi-x').classList.toggle('hide');
+            let giDx = document.getElementById('giDx');
+            giDx.textContent = giX;
+        }
+        if (codeX.length > 0) {
+            document.getElementById('code-x').classList.toggle('hide');
+            let codeDx = document.getElementById('codeDx');
+            codeDx.textContent = codeX;
+        }
+        if (moodX.length > 0) {
+            document.getElementById('mood-x').classList.toggle('hide');
+            let moodDx = document.getElementById('moodDx');
+            moodDx.textContent = moodX;
+        }
+        if (nutrX.length > 0) {
+            document.getElementById('nutr-x').classList.toggle('hide');
+            let nutrDx = document.getElementById('nutrDx');
+            nutrDx.textContent = nutrX;
+        }
+        if (aaMedX.length > 0) {
+            document.getElementById('aaMed-x').classList.toggle('hide');
+            let aaMedDx = document.getElementById('aaMedDx');
+            aaMedDx.textContent = aaMedX;
+        }
+        if (adMedX.length > 0) {
+            document.getElementById('adMed-x').classList.toggle('hide');
+            let adMedDx = document.getElementById('adMedDx');
+            adMedDx.textContent = adMedX;
+        }
+        if (dirMedX.length > 0) {
+            document.getElementById('dirMed-x').classList.toggle('hide');
+            let dirMedDx = document.getElementById('dirMedDx');
+            dirMedDx.textContent = dirMedX;
+        }
+        if (unusedX.length > 0) {
+            document.getElementById('unused-x').classList.toggle('hide');
+            let unusedDx = document.querySelector('#unusedDx');
+            unusedDx.textContent = unusedX;
+        }
+    } else {
+        alert("You have already completed this care plan, refresh the page to start over.")
     }
 }
-
-// document.addEventListener('DOMContentLoaded', () =>  {
-//     document.getElementById('btn').addEventListener('click', addDx);
-// })
