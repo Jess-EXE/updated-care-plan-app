@@ -46,6 +46,7 @@ function addDx() {
         diagnoses.push(diagnosis);
 
         document.querySelector('form').reset();
+
     } else {
 
         alert("You need to enter a diagnosis and a category.")
@@ -55,7 +56,7 @@ function addDx() {
 
 function toolTipReset() {
     var tooltip = document.getElementById("myToolTip");
-    tooltip.classList.add("hide");
+    tooltip.classList.add("invisible");
 }
 
 let count = 0
@@ -178,19 +179,19 @@ function completeCarePlan() {
             let nutrDx = document.getElementById('nutrDx');
             nutrDx.textContent = nutrX;
         }
-        if (aaMedX.length > 0) {
-            document.getElementById('aaMed-x').classList.toggle('hide');
-            let aaMedDx = document.getElementById('aaMedDx');
-            aaMedDx.textContent = aaMedX;
-        }
         if (adMedX.length > 0) {
             document.getElementById('adMed-x').classList.toggle('hide');
-            let adMedDx = document.getElementById('adMedDx');
+            let adMedDx = document.getElementById('adepMed');
             adMedDx.textContent = adMedX;
+        }
+        if (aaMedX.length > 0) {
+            document.getElementById('aaMed-x').classList.toggle('hide');
+            let aaMedDx = document.getElementById('aaMed');
+            aaMedDx.textContent = aaMedX;
         }
         if (dirMedX.length > 0) {
             document.getElementById('dirMed-x').classList.toggle('hide');
-            let dirMedDx = document.getElementById('dirMedDx');
+            let dirMedDx = document.getElementById('dirMed');
             dirMedDx.textContent = dirMedX;
         }
         if (unusedX.length > 0) {

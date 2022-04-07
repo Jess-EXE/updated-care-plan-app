@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Jesse Chase</title>
+    <title>Care Plan Assistant</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/site.css">
 
-    <link rel="icon" type="image/png" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" href="/img/tabicon.png">
 
 </head>
 
@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/img/toplogo.png" alt="Jesse Chase Logo" height="40" class="d-inline-block alight-text-top"> | APP NAME</a>
+        <a class="navbar-brand" href="#"><img src="/img/toplogo.png" alt="Jesse Chase Logo" height="40" class="d-inline-block alight-text-top"> | CARE PLAN ASSISTANT</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,10 +40,10 @@
                     <a class="nav-link" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/Jess-EXE/updated-care-plan-app">Git Repo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">About</a>
+                    <a class="nav-link" target="_blank" href="https://jesse-chase.netlify.app/">About</a>
                 </li>
             </ul>
         </div>
@@ -54,22 +54,53 @@
 <main class="flex-shrink-0">
     <div class="container">
         <div class="row row-cols-1 row-cols-lg-2">
-            <div class="col mt-5">
+            <div class="col mt-5 border-end border-2">
                 <h1>Care Plan Assistant</h1>
                 <h4 class="lead">
                     Instructions:
                 </h4>
-                <p>
-                    This is one of my first projects I made to help with assessments at the nursing facility I was working at. The purpose of it was to help me save time 
-                    on writing baseline care plans for patients. This was a very time consuming process before I made this. When a patient comes in, they 
-                    have to have a care plan that contains all of their diagnoses and medications. It was not uncommon for a patient to have a list of 20-30 diagnoses working with
-                    the geriatric population and a large amount of medications. To write a care plan, you would have to go through by hand, manually separate and categorize 
-                    the diagnoses and medications, then make the care plan and copy everything in. With the help of this program, it shortened the time it took
-                    by a significant amount. The way I would use it is by taking the list of diagnoses/medications and copy/paste them into the input box, add it to a category, and once they were all in I would complete
-                    the care plan by using the complete button. It would take a few seconds per item
+                <p class="border-bottom border-2">
+                    Enter a diagnosis into the first input box then the category to sort it to. I will provide some examples below
+                    for some examples of appropriate diagnosis-category pairs. To add it to the care plan, click the <i>Add Diagnosis</i>
+                    button. Once you have added all of the diagnoses you want, click the <i>Complete Care Plan</i> button and you will get a baseline
+                    care plan template that contains the categories you added and leaves out any category you didn't use so that you only
+                    have the pertinent information that you need.
                 </p>
+                <h4 class="lead">
+                    Examples:
+                </h4>
+                <table class="table table-striped table-sm text-center">
+                    <thead>
+                        <tr>
+                            <th>Diagnosis</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Heart Failure</td>
+                            <td>Cardiovascular</td>
+                        </tr>
+                        <tr>
+                            <td>Pneumonia</td>
+                            <td>Respiratory</td>
+                        </tr>
+                        <tr>
+                            <td>Osteoarthritis</td>
+                            <td>Musculoskeletal</td>
+                        </tr>
+                        <tr>
+                            <td>Hypokalemia</td>
+                            <td>Abnormal Lab Values</td>
+                        </tr>
+                        <tr>
+                            <td>Altered Mental Status</td>
+                            <td>Confusion</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="col mt-4">
+            <div class="col mt-5">
                 <form action="">
                     <label class="form-label">Enter the Diagnosis: </label>
                     <input type="text" class="form-control" id="dx">
@@ -88,8 +119,8 @@
                                     <option value="code">Code Status (Full/DNR)</option>
                                     <option value="mood">Anxiety/Depression</option>
                                     <option value="nutr">Nutrition</option>
-                                    <option value="aaMed">Anti-Anxiety Medications</option>
                                     <option value="adMed">Anti-Depressant Medications</option>
+                                    <option value="aaMed">Anti-Anxiety Medications</option>
                                     <option value="dirMed">Diuretic Medications</option>
                                     <option value="unused">Unused</option>
                                     </select>
@@ -99,7 +130,7 @@
                                 <span class="toolTipText invisible" id="myToolTip"></span> Add Diagnosis</button>
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <button class="btn btn-large btn-primary d-flex justify-content-end" onclick="completeCarePlan()" type="button">Complete CarePlan</button>
+                            <button class="btn btn-large btn-success d-flex justify-content-end" onclick="completeCarePlan()" type="button">Complete Care Plan</button>
                         </div>
                     </div>
                 </form>
@@ -136,7 +167,6 @@
                                 <li>DIAGNOSTICS PER PHYSICIAN'S ORDERS</li>
                             </ul>
                         </div>
-                        <!-- ADD THIS ONE -->
                         <div id="musc-x" class="hide">
                             <h2>Focus:</h2>
                             <p>IMPAIRED PHYSICAL MOBILITY R/T <span id="muscDx"></span></p>
@@ -176,10 +206,9 @@
                                 <li>SOCIAL/ACTIVITIES TO VISIT PRN</li>
                             </ul>
                         </div>
-                        <!-- ADD THIS ONE -->
                         <div id="falls-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RISK OF FALLING R/T <span id="fallDx"></span></p>
+                            <p>RISK OF FALLING R/T <span id="fallsDx"></span></p>
                             <h2>Goal:</h2>
                             <p>PATIENT WILL NOT EXPERIENCE A FALL DURING STAY AND WILL TRANSFER SAFELY TO THEIR ABILITIES</p>
                             <h2>Interventions:</h2>
@@ -205,7 +234,6 @@
                                 <li>ASSIST WITH GLASSESS PRN (if applicable)</li>
                             </ul>
                         </div>
-                        <!-- ADD THIS ONE -->
                         <div id="skin-x" class="hide">
                             <h2>Focus:</h2>
                             <p>RISK FOR IMPAIRED SKIN INTEGRITY R/T <span id="skinDx"></span></p>
@@ -233,7 +261,6 @@
                                 <li>ENCOURAGE WATER INTAKE</li>
                                 </ul>
                         </div>
-                        <!-- ADD THIS ONE -->
                         <div id="code-x" class="hide">
                             <h2>Focus:</h2>
                             <p>PATIENT CODE STATUS: <span id="codeDx"></span></p>
@@ -276,50 +303,50 @@
                                 <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
                                 </ul>
                         </div>
-                        <div id="aaMed" class="hide">
+                        <div id="adMed-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RISK FOR IMPAIRED NUTRITION R/T <span id="aaMed"></span></p>
+                            <p>PATIENT TAKES ANTI-DEPRESSANT MEDICATIONS: <span id="adepMed"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT WILL MAINTAIN ADEQUATE DIET/MAINTAIN WEIGHT THROUGH REVIEW PERIOD</p>
+                            <p>PATINET WILL EXPERIENCE NO ADVERSE EFFECTS DUE TO MEDICATIONS AND NOT REPORT ANY INCREASED EPISODES OF DEPRESSION</p>
                             <h2>Interventions:</h2>
                             <ul>
-                                <li>WEIGHTS PER PO</li>
-                                <li>DIET PER PO</li>
+                                <li>TAKE MEDICATIONS PER PHYSICIANS ORDERS</li>
+                                <li>REPORT ANY ADVERSE EFFECTS (INCREASED DEPRESSION, AGITIATION, DIZZINESS, ETC)</li>
                                 <li>DIETARY TO UPDATE PREFERENCES</li>
                                 <li>SPEECH THERAPY TO EVAL AND TX PER PO</li>
                                 <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
                                 </ul>
                         </div>
-                        <div id="adMed" class="hide">
+                        <div id="aaMed-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RISK FOR IMPAIRED NUTRITION R/T <span id="adMed"></span></p>
+                            <p>PATIENT TAKES ANTI-ANXIETY MEDICATIONS: <span id="aaMed"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT WILL MAINTAIN ADEQUATE DIET/MAINTAIN WEIGHT THROUGH REVIEW PERIOD</p>
+                            <p>PATIENT WILL EXPERIENCE NO ADVERSE EFFECTS DUE TO MEDICATIONS AND BE ABSENT OF INCREASING ANXIETY</p>
                             <h2>Interventions:</h2>
                             <ul>
-                                <li>WEIGHTS PER PO</li>
-                                <li>DIET PER PO</li>
+                                <li>TAKE MEDICATIONS PER PHYSICIANS ORDERS</li>
+                                <li>REPORT ANY ADVERSE EFFECTS (DROWSINESS, SEDATION, CONFUSION, ETC)</li>
                                 <li>DIETARY TO UPDATE PREFERENCES</li>
                                 <li>SPEECH THERAPY TO EVAL AND TX PER PO</li>
                                 <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
                                 </ul>
                         </div>
-                        <div id="dirMed" class="hide">
+                        <div id="dirMed-x" class="hide">
                             <h2>Focus:</h2>
-                            <p>RISK FOR IMPAIRED NUTRITION R/T <span id="dirMed"></span></p>
+                            <p>PATIENT TAKES DIURETIC MEDICATIONS: <span id="dirMed"></span></p>
                             <h2>Goal:</h2>
-                            <p>RESIDENT WILL MAINTAIN ADEQUATE DIET/MAINTAIN WEIGHT THROUGH REVIEW PERIOD</p>
+                            <p>PATIENT WILL EXPERIENCE NO ADVERSE EFFECTS DUE TO MEDICATIONS, AND BE ABSENT OF WORSENING SIGNS OF FLUID OVERLOAD AND EDEMA</p>
                             <h2>Interventions:</h2>
                             <ul>
-                                <li>WEIGHTS PER PO</li>
-                                <li>DIET PER PO</li>
+                                <li>TAKE MEDICATIONS PER PHYSICIANS ORDERS</li>
+                                <li>REPORT ANY ADVERSE EFFECTS (DEHYDRATION, HYPOTENSION, MUSCLE CRAMPS, ETC)</li>
                                 <li>DIETARY TO UPDATE PREFERENCES</li>
                                 <li>SPEECH THERAPY TO EVAL AND TX PER PO</li>
                                 <li>MONITOR AND RECORD MEAL PERCENTAGES</li>
                                 </ul>
                         </div>
                         <div id="unused-x" class="hide">
-                            <h1>You still need to care plan:</h1>
+                            <h1>YOU STILL NEED TO CARE PLAN:</h1>
                             <p><span id="unusedDx"></span></p>
                             </ul>
                         </div>

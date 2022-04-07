@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Jesse Chase</title>
+    <title>Care Plan Assistant</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/site.css">
 
-    <link rel="icon" type="image/png" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" href="/img/tabicon.png">
     <link rel="stylesheet" href="/css/prism.css">
 
 </head>
@@ -24,7 +24,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/img/toplogo.png" alt="Jesse Chase Logo" height="40" class="d-inline-block alight-text-top"> | APP NAME</a>
+        <a class="navbar-brand" href="#"><img src="/img/toplogo.png" alt="Jesse Chase Logo" height="40" class="d-inline-block alight-text-top"> | CARE PLAN ASSISTANT</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,10 +41,10 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/Jess-EXE/updated-care-plan-app">Git Repo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">About</a>
+                    <a class="nav-link" target="_blank" href="https://jesse-chase.netlify.app/">About</a>
                 </li>
             </ul>
         </div>
@@ -56,215 +56,257 @@
     <div class="mt-5"><h1></h1></div>
     <div class="container py-4 px-5 mt-5">
         <div class="mt-4"><h1></h1></div>
-        <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code for Care Plan Assistant</h2>
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
                     let diagnoses = [];
-                    let cardX = [];
-                    let respX = [];
-                    let labsX = [];
-                    let painX = [];
-                    let adlsX = [];
-                    let consX = [];
-                    let diabetesX = [];
-                    let coldX = [];
-                    let nutritionX = [];
-                    let skinX = [];
-                    let giX = [];
-                    let visionX = [];
-                    let confX = [];
-                    let moodX = [];
-                    let contX = [];
-                    let unusedX = [];
-                    
-                    
-                    function addDx() {
-                        let select = document.getElementById("inputState");
-                        let value = select.options[select.selectedIndex].value;
-                        
-                        let userInput = document.getElementById("dx").value;
-                    
-                        var tooltip = document.getElementById("myToolTip");
-                    
-                        if (value.length > 0 && userInput.length > 0) {
-                            if (userInput.length > 0) {
-                                tooltip.classList.remove("invisible");
-                                tooltip.innerHTML = "Diagnosis added!";
-                            }
-                        
-                            let diagnosis = {
-                                dx: userInput,
-                                cat: value
-                            }
-                            diagnoses.push(diagnosis);
-                            document.querySelector('form').reset();
-                        } else {
-                            alert("You need to enter a diagnosis and a category.")
-                        }
-                    
-                        //console.warn('added', {diagnoses} );
-                        //let pre = document.querySelector('#msg pre');
-                        //pre.textContent = '\n' + JSON.stringify(diagnoses, '\t', 2);
-                    
-                        //localStorage.setItem('myDxList', JSON.stringify(diagnoses));
-                    }
-                    
-                    function toolTipReset() {
-                        var tooltip = document.getElementById("myToolTip");
-                        tooltip.classList.add("invisible");
-                    }
-                    
-                    let count = 0
-                    
-                    function completeCarePlan() {
-                        if (count == 0) {
-                            count++;
-                            for (i = 0; i < diagnoses.length; i++) {
-                                switch (diagnoses[i].cat) {
-                                    case 'cardiovascular':
-                                        cardX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'respiratory':
-                                        respX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'labs':
-                                        labsX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'pain':
-                                        painX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'adls':
-                                        adlsX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'constipation':
-                                        consX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'diabetes':
-                                        diabetesX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'cold':
-                                        coldX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'nutrition':
-                                        nutritionX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'skin':
-                                        skinX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'gi':
-                                        giX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'vision':
-                                        visionX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'confusion':
-                                        confX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'mood':
-                                        moodX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'continence':
-                                        contX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    case 'unused':
-                                        unusedX.push(" " + diagnoses[i].dx);
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
-                        
-                            if (cardX.length > 0) {
-                                document.getElementById('card-x').classList.toggle('invisible');
-                                let cardDx = document.getElementById('cardDx');
-                                cardDx.textContent = cardX;
-                            }
-                            if (respX.length > 0) {
-                                document.getElementById('resp-x').classList.toggle('invisible');
-                                let respDx = document.querySelector('#respDx');
-                                respDx.textContent = respX;
-                            }
-                            if (labsX.length > 0) {
-                                document.getElementById('labs-x').classList.toggle('invisible');
-                                let labsDx = document.querySelector('#labsDx');
-                                labsDx.textContent = labsX;
-                            }
-                            if (painX.length > 0) {
-                                document.getElementById('pain-x').classList.toggle('invisible');
-                                let painDx = document.querySelector('#painDx');
-                                painDx.textContent = painX;
-                            }
-                            if (adlsX.length > 0) {
-                                document.getElementById('adls-x').classList.toggle('invisible');
-                                let adlsDx = document.querySelector('#adlsDx');
-                                adlsDx.textContent = adlsX;
-                            }
-                            if (consX.length > 0) {
-                                document.getElementById('cons-x').classList.toggle('invisible');
-                                let consDx = document.querySelector('#consDx');
-                                consDx.textContent = consX;
-                            }
-                            if (diabetesX.length > 0) {
-                                document.getElementById('diabetes-x').classList.toggle('invisible');
-                                let diabetesDx = document.querySelector('#diabetesDx');
-                                diabetesDx.textContent = diabetesX;
-                            }
-                            if (coldX.length > 0) {
-                                document.getElementById('cold-x').classList.toggle('invisible');
-                                let coldDx = document.querySelector('#coldDx');
-                                coldDx.textContent = coldX;
-                            }
-                            if (nutritionX.length > 0) {
-                                document.getElementById('nutrition-x').classList.toggle('invisible');
-                                let nutritionDx = document.querySelector('#nutritionDx');
-                                nutritionDx.textContent = nutritionX;
-                            }
-                            if (skinX.length > 0) {
-                                document.getElementById('skin-x').classList.toggle('invisible');
-                                let skinDx = document.querySelector('#skinDx');
-                                skinDx.textContent = skinX;
-                            }
-                            if (giX.length > 0) {
-                                document.getElementById('gi-x').classList.toggle('invisible');
-                                let giDx = document.querySelector('#giDx');
-                                giDx.textContent = giX;
-                            }
-                            if (visionX.length > 0) {
-                                document.getElementById('vision-x').classList.toggle('invisible');
-                                let visionDx = document.querySelector('#visionDx');
-                                visionDx.textContent = visionX;
-                            }
-                            if (confX.length > 0) {
-                                document.getElementById('conf-x').classList.toggle('invisible');
-                                let confDx = document.querySelector('#confDx');
-                                confDx.textContent = confX;
-                            }
-                            if (moodX.length > 0) {
-                                document.getElementById('mood-x').classList.toggle('invisible');
-                                let moodDx = document.querySelector('#moodDx');
-                                moodDx.textContent = moodX;
-                            }
-                            if (contX.length > 0) {
-                                document.getElementById('cont-x').classList.toggle('invisible');
-                                let contDx = document.querySelector('#contDx');
-                                contDx.textContent = contX;
-                            }
-                            if (unusedX.length > 0) {
-                                document.getElementById('unused-x').classList.toggle('invisible');
-                                let unusedDx = document.querySelector('#unusedDx');
-                                unusedDx.textContent = unusedX;
-                            }
-                        } else {
-                            alert("You have already completed this care plan, refresh the page to start over.")
-                        }
-                    }
+let cardX = [];
+let respX = [];
+let muscX = [];
+let labsX = [];
+let confX = [];
+let fallsX = [];
+let visX = [];
+let skinX = [];
+let giX = [];
+let codeX = [];
+let moodX = [];
+let nutrX = [];
+let aaMedX = [];
+let adMedX = [];
+let dirMedX = [];
+let unusedX = [];
+
+
+function addDx() {
+
+    let select = document.getElementById("inputState");
+
+    let value = select.options[select.selectedIndex].value;
+    
+    let userInput = document.getElementById("dx").value;
+
+    var tooltip = document.getElementById("myToolTip");
+
+    if (value.length > 0 && userInput.length > 0) {
+
+        if (userInput.length > 0) {
+
+            tooltip.classList.remove("invisible");
+
+            tooltip.innerHTML = "Diagnosis added!";
+
+        }
+    
+        let diagnosis = {
+
+            dx: userInput,
+            cat: value
+        }
+
+        diagnoses.push(diagnosis);
+
+        document.querySelector('form').reset();
+
+    } else {
+
+        alert("You need to enter a diagnosis and a category.")
+
+    }
+}
+
+function toolTipReset() {
+    var tooltip = document.getElementById("myToolTip");
+    tooltip.classList.add("invisible");
+}
+
+let count = 0
+
+function completeCarePlan() {
+    if (count == 0) {
+        count++;
+        for (i = 0; i < diagnoses.length; i++) {
+            switch (diagnoses[i].cat) {
+                case "card":
+                    cardX.push(" " + diagnoses[i].dx);
+                    break;
+                case "resp":
+                    respX.push(" " + diagnoses[i].dx);
+                    break;
+                case "musc":
+                    muscX.push(" " + diagnoses[i].dx);
+                    break;
+                case "labs":
+                    labsX.push(" " + diagnoses[i].dx);
+                    break;
+                case "conf":
+                    confX.push(" " + diagnoses[i].dx);
+                    break;
+                case "falls":
+                    fallsX.push(" " + diagnoses[i].dx);
+                    break;
+                case "vis":
+                    visX.push(" " + diagnoses[i].dx);
+                    break;
+                case "skin":
+                    skinX.push(" " + diagnoses[i].dx);
+                    break;
+                case "gi":
+                    giX.push(" " + diagnoses[i].dx);
+                    break;
+                case "code":
+                    codeX.push(" " + diagnoses[i].dx);
+                    break;
+                case "mood":
+                    moodX.push(" " + diagnoses[i].dx);
+                    break;
+                case "nutr":
+                    nutrX.push(" " + diagnoses[i].dx);
+                    break;
+                case "aaMed":
+                    aaMedX.push(" " + diagnoses[i].dx);
+                    break;
+                case "adMed":
+                    adMedX.push(" " + diagnoses[i].dx);
+                    break;
+                case "dirMed":
+                    dirMedX.push(" " + diagnoses[i].dx);
+                    break;
+                case 'unused':
+                    unusedX.push(" " + diagnoses[i].dx);
+                    break;
+                default:
+                    break;
+            }
+        }
+    
+        if (cardX.length > 0) {
+            document.getElementById('card-x').classList.toggle('hide');
+            let cardDx = document.getElementById('cardDx');
+            cardDx.textContent = cardX;
+        }
+        if (respX.length > 0) {
+            document.getElementById('resp-x').classList.toggle('hide');
+            let respDx = document.getElementById('respDx');
+            respDx.textContent = respX;
+        }
+        if (muscX.length > 0) {
+            document.getElementById('musc-x').classList.toggle('hide');
+            let muscDx = document.getElementById('muscDx');
+            muscDx.textContent = muscX;
+        }
+        if (labsX.length > 0) {
+            document.getElementById('labs-x').classList.toggle('hide');
+            let labsDx = document.getElementById('labsDx');
+            labsDx.textContent = labsX;
+        }
+        if (confX.length > 0) {
+            document.getElementById('conf-x').classList.toggle('hide');
+            let confDx = document.getElementById('confDx');
+            confDx.textContent = confX;
+        }
+        if (fallsX.length > 0) {
+            document.getElementById('falls-x').classList.toggle('hide');
+            let fallsDx = document.getElementById('fallsDx');
+            fallsDx.textContent = fallsX;
+        }
+        if (visX.length > 0) {
+            document.getElementById('vis-x').classList.toggle('hide');
+            let visDx = document.getElementById('visDx');
+            visDx.textContent = visX;
+        }
+        if (skinX.length > 0) {
+            document.getElementById('skin-x').classList.toggle('hide');
+            let skinDx = document.getElementById('skinDx');
+            skinDx.textContent = skinX;
+        }
+        if (giX.length > 0) {
+            document.getElementById('gi-x').classList.toggle('hide');
+            let giDx = document.getElementById('giDx');
+            giDx.textContent = giX;
+        }
+        if (codeX.length > 0) {
+            document.getElementById('code-x').classList.toggle('hide');
+            let codeDx = document.getElementById('codeDx');
+            codeDx.textContent = codeX;
+        }
+        if (moodX.length > 0) {
+            document.getElementById('mood-x').classList.toggle('hide');
+            let moodDx = document.getElementById('moodDx');
+            moodDx.textContent = moodX;
+        }
+        if (nutrX.length > 0) {
+            document.getElementById('nutr-x').classList.toggle('hide');
+            let nutrDx = document.getElementById('nutrDx');
+            nutrDx.textContent = nutrX;
+        }
+        if (adMedX.length > 0) {
+            document.getElementById('adMed-x').classList.toggle('hide');
+            let adMedDx = document.getElementById('adepMed');
+            adMedDx.textContent = adMedX;
+        }
+        if (aaMedX.length > 0) {
+            document.getElementById('aaMed-x').classList.toggle('hide');
+            let aaMedDx = document.getElementById('aaMed');
+            aaMedDx.textContent = aaMedX;
+        }
+        if (dirMedX.length > 0) {
+            document.getElementById('dirMed-x').classList.toggle('hide');
+            let dirMedDx = document.getElementById('dirMed');
+            dirMedDx.textContent = dirMedX;
+        }
+        if (unusedX.length > 0) {
+            document.getElementById('unused-x').classList.toggle('hide');
+            let unusedDx = document.querySelector('#unusedDx');
+            unusedDx.textContent = unusedX;
+        }
+    } else {
+        alert("You have already completed this care plan, refresh the page to start over.")
+    }
+}
                 </code></pre>
             </div>
             <div class="col col-lg-4 mt-2">
-                <p>The code is structured in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a funciton that displays an alert with the message of "Hello World"</p>
+                <p>The first thing I have done with this code is declare arrays for all of my diagnosis categories.
+                    If you look at the first array declared (<i>diagnoses</i>) - it will be an array of objects, and each object will
+                    have a <strong>diagnosis</strong> and a <strong>category</strong>. Later in this code, I iterate through 
+                    this array and sort each object into the correct corresponding array (<i>EXAMPLE: a diagnosis with a category of <strong>cardiovascular</strong> will
+                    be sorted to the <strong>cardX</strong> array</i>). The following arrays will eventually be added to my HTML 
+                    by manipulating the DOM, and will display to the user as long as they are not empty.
+                </p>
+                <h5>addDx()</h5>
+                <p>
+                    This function is called when the user clicks the <i>Add Diagnosis</i> button, it retrieves the user input and assigns the value of the diagnosis to <i>userInput</i> and the category 
+                    to <i>value</i>. <br>
+                    <strong>SIDE NOTE:</strong> this is also where I control the logic for the <i>tooltip</i> pop up box 
+                    that lets the user know that the diagnosis has been entered, which is just meant to contribute to a nicer UI. <br>
+                    Then I have conditional logic to ensure that I have all of the required input. If not, I alert the user. If I do, then along
+                    with displaying the tooltip, a <i>diagnosis</i> object is created with two properties as follows: <br>
+                    <strong>
+                        dx: {diagnosis will go here}, <br>
+                        cat: {category will go here}
+                    </strong> <br>
+                    I then <i>push</i> that object into the <i>diagnoses array</i>. After that, the input box is <i>reset</i>
+                </p>
+                <h5>toolTipReset()</h5>
+                <p>
+                    This function just hides the tooltip box once the user's mouse leaves the button.
+                </p>
+                <h5>completeCarePlan()</h5>
+                <p>
+                    This function is structured in an <i>if - else</i> statment that is tied to the variable outside of this
+                    function named <i>count</i>. The idea is that you may only create one care plan per page refresh, so anytime you 
+                    click the <i>Create Care Plan</i> button and call this function, it will increment <i>count</i> to 1 and you
+                    will have created the one instance of your care plan. <br>
+                    Now onto how it works: This function contains long lines of conditional statements, and that serves
+                    the purpose of iterating through each array of diagnoses. With the first <i>switch statement</i>, I sort
+                    the first array this script declared (<i>diagnoses</i>) and use a <i>for loop</i> to sort each diagnosis into 
+                    the correct array specific to it's <i>cat</i> property. Once all of the diagnoses are sorted, I use multiple
+                    <i>if statements</i> to check if each array is empty. If an array is not empty, I manipulate the DOM to unhide
+                    the correct element in the HTML using a custom CSS class, and fill in the focus of that portion of the care plan
+                    with the list of diagnoses.
+                </p>
             </div>
 
         </div>
